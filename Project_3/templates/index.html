@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta content="utf-8" http-equiv="encoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Heart Disease Predictor</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <link href="/UCSDSAN20190108DATA/Project_3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+  
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron">
+        <img src="templates/heart3.png" class="heart" alt="Heart Logo">
+        <span id="websiteTitle">Predicting Heart Disease</span>
+        <hr class="my-4">
+        <span id="websiteDescriptor">What is your likelihood of contracting heart disease?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-md-4">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Age  
+        <button type="button" class="btnquestion btn-outline-secondary" data-toggle="popover" title="Popover Title" data-content="Test">?</button>
+      </span>
+      <input type="text" class="form-control" placeholder="50">
+    </div><br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Cholesterol  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="250">
+    </div><br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Flouroscopy  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="0-3">
+    </div><br>
+    
+  </div>
+  <div class="container col-md-4">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Resting Blood Pressure  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="130">
+    </div><br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Chest Pain  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="0-3">
+    </div><br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">ST Depression  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="0.0-10.0">
+    </div><br>     
+  </div>
+  <div class="container col-md-4">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Max Heart Rate  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="170">
+    </div><br> 
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Thal  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="0-3">
+    </div><br>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon">Exercise Induced Angina  <button type="button" class="btnquestion btn-outline-secondary">?</button></span>
+      <input type="text" class="form-control" placeholder="Y/N">
+    </div><br> 
+  </div>
+  <!-- <div class="container col-md-2">
+    <div class="row"></div>
+  </div> -->
+  
+  <div class="container col-md-4">
+    <div class="well">
+      <h5>Age:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>Cholesterol:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>Flouroscopy:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+  </div>
+  <div class="container col-md-4">
+    <div class="well">
+      <h5>Resting Blood Pressure:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>Chest Pain:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>ST Depression:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+  </div>
+  <div class="container col-md-4">
+    <div class="well">
+      <h5>Max Heart Rate:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>Thal:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+    <div class="well">
+      <h5>Exercise Induced Angina:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div></br>
+  </div>
+  
+
+  <div class="container col-md-5"></div>
+  <div class="container col-md-2">
+    <a href="#" class="btn btn-default btn-lg" role="button"><img src="templates/heart3.png" class="heart2" alt="Heart Logo">  Check Your Risk</a>
+  </div>
+  <div class="container col-md-5">
+      <!-- <div class="row"></div> -->
+  </div></br>
+
+  <div id="wrapper">
+      <canvas id="myRadarChart"></canvas>
+  </div>
+  
+  <div class="container col-md-12">
+      <p>
+        Please consult your doctor for more accurate depictions of your health.
+      </p>
+  </div>
+  
+  <!-- <script>
+    $(function () {
+      $('[data-toggle="popover"]').popover({
+        container: 'body'
+      })
+    });
+  </script> -->
+  <!-- <script>
+    (function($) {
+      $(function() {
+        $(document).tooltip({ selector: '[data-toggle="tooltip"]' });
+        $(document).popover({ selector: '[data-toggle="popover"]' });
+      });
+    })(jQuery);
+  </script> -->
+   <script type="text/javascript">
+    (function () {
+      ('[data-toggle="popover"]').popover('show')
+    });
+  </script>
+  <!-- <script src="js/popper.min.js"></script> -->
+  <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+  <!-- <script src="/js/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src="js/Radar.js"></script>
+  
+
+</body>
+
+</html>
